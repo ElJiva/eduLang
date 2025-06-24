@@ -17,7 +17,7 @@
             </Border>
 
          
-            <Image Source="logo.png" HeightRequest="120" WidthRequest="120" HorizontalOptions="Center" Margin="0,16"/>
+            <Image Source="logo.jpg" HeightRequest="120" WidthRequest="120" HorizontalOptions="Center" Margin="0,16"/>
             <Label Text="Servicios Académicos"
                    FontSize="22"
                    FontAttributes="Bold"

@@ -1,7 +1,6 @@
 ﻿using System.Net.Http.Json;
 using eduLangApp.Models;
 
-
 namespace eduLangApp.Services;
 
 public class EstudianteServices
@@ -11,7 +10,7 @@ public class EstudianteServices
     public EstudianteServices()
     {
         _httpClient = new HttpClient();
-        _httpClient.BaseAddress = new Uri(" https://cf91-2806-2f0-6000-e1df-b58e-880e-10fd-79bb.ngrok-free.app/api/");
+        _httpClient.BaseAddress = new Uri(ApiUrl.BaseUrl);
     }
 
     public async Task<List<Estudiantes>> LoadEstudiantesAsync()

@@ -27,10 +27,11 @@ public partial class LoginPage : ContentPage
 
             var result = await _apiService.LoginAsync(email, password);
 
-            await DisplayAlert("Bienvenido", $"Hola {result.User.Email}, tu rol es: {result.User.Role}", "OK");
+            await DisplayAlert("Bienvenido de nuevo", $"{result.User.Role}", "OK");
 
-            // Aquí puedes navegar a una vista distinta según el rol
-            // if (result.User.Rol == "admin") ...
+            await Navigation.PushAsync(new MainPage());
+            
+            Navigation.RemovePage(this);
         }
         catch (Exception ex)
         {
