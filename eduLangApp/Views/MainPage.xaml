@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="eduLangApp.MainPage"
+             BackgroundColor="#009999"
+             Title="EDULANG">
+
+     <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="18" BackgroundColor="#009999">
+            
+            <Border BackgroundColor="White" StrokeThickness="0" StrokeShape="RoundRectangle 35" Margin="0,20,0,0" Padding="16">
+                <Label Text="Welcome Back"
+                       FontSize="20"
+                       TextColor="Black"
+                       HorizontalOptions="Center"
+                       FontAttributes="Bold"/>
+            </Border>
+
+         
+            <Image Source="logo.png" HeightRequest="120" WidthRequest="120" HorizontalOptions="Center" Margin="0,16"/>
+            <Label Text="Servicios Académicos"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   HorizontalOptions="Center"
+                   Margin="0,15,0,7"/>
+            <Border BackgroundColor="White" StrokeShape="RoundRectangle 25" Padding="4" Margin="0,4">
+                <Grid ColumnDefinitions="Auto,*,Auto" VerticalOptions="Center" HeightRequest="50">
+                    <Image Source="grad.png" HeightRequest="34" WidthRequest="34" VerticalOptions="Center" Margin="16,0,6,0" Grid.Column="0"/>
+                    <Label Text="Estudiante"
+                           FontSize="18"
+                           TextColor="Black"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           Grid.Column="1">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="GoToEstudiantes"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Image Source="grad.png" HeightRequest="34" WidthRequest="34" VerticalOptions="Center" Margin="6,0,16,0" Grid.Column="2"/>
+                </Grid>
+            </Border>
+            <Border BackgroundColor="White" StrokeShape="RoundRectangle 25" Padding="4" Margin="0,4">
+                <Grid ColumnDefinitions="Auto,*,Auto" VerticalOptions="Center" HeightRequest="50">
+                    <Image Source="apple.png" HeightRequest="34" WidthRequest="34" VerticalOptions="Center" Margin="16,0,6,0" Grid.Column="0"/>
+                    <Label Text="Docente"
+                           FontSize="18"
+                           TextColor="Black"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           Grid.Column="1">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="GoToDocente"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Image Source="apple.png" HeightRequest="34" WidthRequest="34" VerticalOptions="Center" Margin="6,0,16,0" Grid.Column="2"/>
+                </Grid>
+            </Border>
+            <Border BackgroundColor="White" StrokeShape="RoundRectangle 25" Padding="4" Margin="0,4">
+                <Grid ColumnDefinitions="Auto,*,Auto" VerticalOptions="Center" HeightRequest="50">
+                    <Image Source="course.png" HeightRequest="34" WidthRequest="34" VerticalOptions="Center" Margin="16,0,6,0" Grid.Column="0"/>
+                    <Label Text="Cursos"
+                           FontSize="18"
+                           TextColor="Black"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           Grid.Column="1">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnCursosClicked"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Image Source="course.png" HeightRequest="34" WidthRequest="34" VerticalOptions="Center" Margin="6,0,16,0" Grid.Column="2"/>
+                </Grid>
+            </Border>
+            <Border BackgroundColor="White" StrokeShape="RoundRectangle 25" Padding="4" Margin="0,4">
+                <Grid ColumnDefinitions="Auto,*,Auto" VerticalOptions="Center" HeightRequest="50">
+                    <Image Source="id.png" HeightRequest="34" WidthRequest="34" VerticalOptions="Center" Margin="16,0,6,0" Grid.Column="0"/>
+                    <Label Text="Matrícula"
+                           FontSize="18"
+                           TextColor="Black"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           Grid.Column="1">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnMatriculaClicked"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Image Source="id.png" HeightRequest="34" WidthRequest="34" VerticalOptions="Center" Margin="6,0,16,0" Grid.Column="2"/>
+                </Grid>
+            </Border>
+            <Border BackgroundColor="White" StrokeShape="RoundRectangle 25" Padding="4" Margin="0,4">
+                <Grid ColumnDefinitions="Auto,*,Auto" VerticalOptions="Center" HeightRequest="50">
+                    <Image Source="grade.png" HeightRequest="34" WidthRequest="34" VerticalOptions="Center" Margin="16,0,6,0" Grid.Column="0"/>
+                    <Label Text="Calificaciones"
+                           FontSize="18"
+                           TextColor="Black"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           Grid.Column="1">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnCalificacionesClicked"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Image Source="grade.png" HeightRequest="34" WidthRequest="34" VerticalOptions="Center" Margin="6,0,16,0" Grid.Column="2"/>
+                </Grid>
+            </Border>
+            <Label Text="Servicios Administrador"
+                   FontSize="22"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   HorizontalOptions="Center"
+                   Margin="0,25,0,7"/>
+            <Border BackgroundColor="White" StrokeShape="RoundRectangle 25" Padding="4" Margin="0,4,0,20">
+                <Grid ColumnDefinitions="Auto,*,Auto" VerticalOptions="Center" HeightRequest="50">
+                    <Image Source="pay.png" HeightRequest="34" WidthRequest="34" VerticalOptions="Center" Margin="16,0,6,0" Grid.Column="0"/>
+                    <Label Text="Pagos"
+                           FontSize="18"
+                           TextColor="Black"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           Grid.Column="1">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnPaymentsClicked"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Image Source="pay.png" HeightRequest="34" WidthRequest="34" VerticalOptions="Center" Margin="6,0,16,0" Grid.Column="2"/>
+                </Grid>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

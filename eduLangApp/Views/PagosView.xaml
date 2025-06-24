@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="eduLangApp.Views.PagosView"
+             Title="Pagos"
+             BackgroundColor="#0E172A">
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label Text="💰 Historial de Pagos"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="White" />
+
+            <CollectionView x:Name="PagosCollectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                            Stroke="#334155"
+                            BackgroundColor="#1E293B"
+                            StrokeShape="RoundRectangle 10"
+                            StrokeThickness="1"
+                            Padding="15"
+                            Margin="5">
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Tipo}" FontSize="18" FontAttributes="Bold" TextColor="White"/>
+                                <Label Text="{Binding Mes}" FontSize="14" TextColor="#CBD5E1" IsVisible="{Binding EsMensualidad}"/>
+                                <Label Text="{Binding FechaPago, StringFormat='Fecha: {0:dd/MM/yyyy}'}" FontSize="14" TextColor="#94A3B8"/>
+                                <Label Text="{Binding Monto, StringFormat='Monto: ${0:F2}'}" FontSize="14" TextColor="#38BDF8"/>
+                                <Label Text="{Binding PagadoText}" FontSize="14" TextColor="{Binding PagadoColor}"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="Regresar"
+                    BackgroundColor="#1E40AF"
+                    TextColor="White"
+                    Clicked="OnBackClicked"
+                    CornerRadius="8"
+                    FontAttributes="Bold" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:eduLangApp.ViewModels"
+             x:Class="eduLangApp.Views.CalificacionesView"
+             Title="Calificaciones"
+             BackgroundColor="#0E172A">
+    <ContentPage.BindingContext>
+        <viewmodels:CalificacionesViewModel />
+    </ContentPage.BindingContext>
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label Text="📘 Registro de Calificaciones"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="White" />
+
+            <CollectionView ItemsSource="{Binding ListaCalificaciones}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                            BackgroundColor="#1E293B"
+                            Stroke="#1E293B"
+                            StrokeShape="RoundRectangle 12"
+                            StrokeThickness="1"
+                            Padding="15"
+                            Margin="5">
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="{Binding Curso}" FontSize="18" FontAttributes="Bold" TextColor="White"/>
+                                <Label Text="{Binding Evaluacion}" FontSize="14" TextColor="#CBD5E1"/>
+                                <Label Text="{Binding Nota, StringFormat='Calificación: {0:F1}'}" FontSize="14" TextColor="#38BDF8"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="Regresar al Inicio"
+                    Clicked="OnRegresarClicked"
+                    BackgroundColor="#1D4ED8"
+                    TextColor="White"
+                    CornerRadius="8"
+                    Padding="10"
+                    FontAttributes="Bold"/>
+        </VerticalStackLayout>
+    </ScrollView>
+    
+    
+</ContentPage>

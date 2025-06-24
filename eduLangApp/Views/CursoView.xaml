@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="eduLangApp.Views.CursoView"
+             Title="Cursos"
+             BackgroundColor="#0E172A">
+    
+    
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="📚 Cursos Disponibles"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="White" />
+
+            <CollectionView x:Name="CursosList">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="#334155"
+                               BackgroundColor="#1E293B"
+                               CornerRadius="10"
+                               Padding="15"
+                               Margin="5">
+                            <VerticalStackLayout Spacing="5">
+                                <Label Text="{Binding Idioma}" FontSize="18" FontAttributes="Bold" TextColor="White"/>
+                                <Label Text="{Binding Nivel, StringFormat='Nivel: {0}'}" TextColor="#CBD5E1"/>
+                                <Label Text="{Binding Horario, StringFormat='Horario: {0}'}" TextColor="#CBD5E1"/>
+                                <Label Text="{Binding Cupo, StringFormat='Cupo: {0}'}" TextColor="#CBD5E1"/>
+                                <Label Text="{Binding DocenteId, StringFormat='Docente ID: {0}'}" TextColor="#CBD5E1"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="Regresar"
+                    BackgroundColor="#1E40AF"
+                    TextColor="White"
+                    Clicked="OnBackClicked"
+                    CornerRadius="8"
+                    FontAttributes="Bold"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="eduLangApp.Views.MatriculaView"
+             BackgroundColor="#0E172A"
+             Title="Credencial del Alumno">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30"
+                             Spacing="30"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center">
+
+            <Label Text="🎓 Credencial del Alumno"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalTextAlignment="Center" />
+
+            <Border
+                BackgroundColor="#1E293B"
+                Stroke="#334155"
+                StrokeShape="RoundRectangle 15"
+                StrokeThickness="1"
+                Padding="25"
+                HorizontalOptions="Fill"
+                MaximumWidthRequest="400"
+            >
+                <VerticalStackLayout Spacing="15"
+                                     HorizontalOptions="Center">
+
+                    <Image Source="dotnet_bot.png"
+                           HeightRequest="100"
+                           Aspect="AspectFit" />
+
+                    <Label x:Name="NombreLabel"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="White"
+                           HorizontalTextAlignment="Center"
+                           LineBreakMode="TailTruncation" />
+
+                    <Label x:Name="MatriculaLabel"
+                           FontSize="16"
+                           TextColor="#38BDF8"
+                           HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="⬅ Regresar al inicio"
+                    Clicked="OnBackClicked"
+                    BackgroundColor="#1E40AF"
+                    TextColor="White"
+                    CornerRadius="12"
+                    FontAttributes="Bold"
+                    Padding="12"
+                    HorizontalOptions="Fill"
+                    MaximumWidthRequest="250" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

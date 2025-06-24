@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:eduLangApp.ViewModels"
+             x:Class="eduLangApp.Views.EstudianteView"
+             Title="Estudiantes">
+
+    <VerticalStackLayout Padding="20" BackgroundColor="#009999">
+        <Entry x:Name="IdEntry"
+               Placeholder="Enter Estudiante ID"
+               Keyboard="Numeric"
+               Margin="0,0,0,10"/>
+
+        <Button Text="Buscar por ID"
+                Clicked="OnBuscarPorIdClicked"
+                BackgroundColor="CornflowerBlue"
+                TextColor="White"
+                Margin="0,0,0,20"/>
+        <Button Text="Limpiar búsqueda"
+                Clicked="OnLoadClicked"
+                BackgroundColor="MediumBlue"
+                TextColor="White"
+                Margin="0,0,0,20"/>
+
+
+        <Button Text="Cargar estudiantes" Clicked="OnLoadClicked" BackgroundColor="DarkSlateBlue"/>
+
+        <CollectionView ItemsSource="{Binding ListaEstudiantes}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="10" Margin="5" BorderColor="#334155" BackgroundColor="CornflowerBlue">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Nombre}" FontAttributes="Bold" FontSize="16"/>
+                            <Label Text="{Binding Correo}" />
+                            <Label Text="{Binding Matricula}" />
+                            <Label Text="{Binding Rol}" />
+                            <Label Text="Curso:" FontAttributes="Bold"/>
+                            <Label Text="{Binding CursoIdioma}" />
+                            <Label Text="{Binding CursoNivel}" />
+                            <Label Text="{Binding CursoHorario}" />
+                        </VerticalStackLayout>
+                    </Frame>
+                    
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>
