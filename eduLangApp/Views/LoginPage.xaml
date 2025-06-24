@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="eduLangApp.Views.LoginPage"
+             Title="Login">
+     <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="Cyan" Offset="0.0" />
+            <GradientStop Color="DarkCyan" Offset="0.1" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <Grid>
+        <ScrollView>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <!-- Contenedor centrado en X y Y-->
+                <ContentView Grid.Column="1"
+                             WidthRequest="{OnPlatform Android= 320, iOS= 340, WinUI= 400}">
+
+                    <VerticalStackLayout Spacing="25" Padding="30, 0" VerticalOptions="Center"
+                                         HorizontalOptions="Center">
+
+                        <Image Source="edu.jpg" HeightRequest="120" Aspect="AspectFill"
+                               HorizontalOptions="Center" />
+
+                        <Label Text="Bienvenido a EduLang" TextColor="Azure" FontSize="24" FontAttributes="Bold"
+                               HorizontalOptions="Center" />
+
+                        <!-- Formulario de inicio de sesión -->
+                        <Border BackgroundColor="White" Padding="20">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="10" />
+                            </Border.StrokeShape>
+                            <VerticalStackLayout Spacing="15">
+                                <VerticalStackLayout Spacing="5">
+                                    <Label Text="Email"
+                                           TextColor="Black"
+                                           FontAttributes="Bold" />
+                                    <Entry Placeholder="tu@gmail.com" Keyboard="Email" Text="{Binding Email}" />
+                                </VerticalStackLayout>
+                                <VerticalStackLayout Spacing="5">
+                                    <Label Text="Password"
+                                           TextColor="Black"
+                                           FontAttributes="Bold" />
+                                    <Entry Placeholder="Password" Keyboard="Password" Text="{Binding Password}" />
+                                </VerticalStackLayout>
+
+                                <Button Text="Iniciar sesion"
+                                        Command="{Binding LoginCommand}"
+                                        BackgroundColor="DarkCyan"
+                                        TextColor="Azure"
+                                        CornerRadius="10"
+                                        HeightRequest="50"
+                                        FontAttributes="Bold"
+                                        Margin="0, 20, 0, 0" />
+                            </VerticalStackLayout>
+                        </Border>
+
+                        <Label Text="No tienes cuenta? Registrate"
+                               TextColor="Azure"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding RegisterNew}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+
+
+                    </VerticalStackLayout>
+                </ContentView>
+            </Grid>
+        </ScrollView>
+        <!-- Indicador de carga -->
+        <ActivityIndicator
+            IsRunning="{Binding IsBusy}"
+            IsVisible="{Binding IsBusy}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Color="Azure"
+            BackgroundColor="#80000000"
+            WidthRequest="100"
+            HeightRequest="100" />
+
+    </Grid>
+
+</ContentPage>
