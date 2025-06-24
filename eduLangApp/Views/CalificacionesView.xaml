@@ -9,7 +9,7 @@
     <ContentPage.BindingContext>
         <viewmodels:CalificacionesViewModel />
     </ContentPage.BindingContext>
-    
+
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
             <Label Text="📘 Registro de Calificaciones"
@@ -17,26 +17,64 @@
                    FontAttributes="Bold"
                    TextColor="White" />
 
-            <CollectionView ItemsSource="{Binding ListaCalificaciones}">
+            <!-- 🟩 FORMULARIO NUEVA CALIFICACIÓN -->
+            <Frame BackgroundColor="#1E293B" Padding="15" CornerRadius="10">
+                <VerticalStackLayout Spacing="10">
+                    <Entry Placeholder="Curso"
+                           PlaceholderColor="#94A3B8"
+                           TextColor="White" />
+
+                    <Entry Placeholder="Evaluación"
+                           PlaceholderColor="#94A3B8"
+                           TextColor="White" />
+
+                    <Entry Placeholder="Nota (ej. 8.5)"
+                           Keyboard="Numeric"
+                           PlaceholderColor="#94A3B8"
+                           TextColor="White" />
+
+                    <Button Text="Agregar Calificación"
+                            BackgroundColor="#22C55E"
+                            TextColor="White"
+                            CornerRadius="8"
+                            FontAttributes="Bold" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- 🟦 LISTA DE CALIFICACIONES -->
+            <CollectionView>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Border
-                            BackgroundColor="#1E293B"
-                            Stroke="#1E293B"
-                            StrokeShape="RoundRectangle 12"
-                            StrokeThickness="1"
-                            Padding="15"
-                            Margin="5">
+                        <Frame BorderColor="#1E293B"
+                               BackgroundColor="#1E293B"
+                               CornerRadius="12"
+                               Padding="15"
+                               Margin="5">
                             <VerticalStackLayout Spacing="5">
-                                <Label Text="{Binding Curso}" FontSize="18" FontAttributes="Bold" TextColor="White"/>
-                                <Label Text="{Binding Evaluacion}" FontSize="14" TextColor="#CBD5E1"/>
-                                <Label Text="{Binding Nota, StringFormat='Calificación: {0:F1}'}" FontSize="14" TextColor="#38BDF8"/>
+                                <Label Text="Curso: Inglés Básico" FontSize="18" FontAttributes="Bold" TextColor="White"/>
+                                <Label Text="Evaluación: Parcial 1" FontSize="14" TextColor="#CBD5E1"/>
+                                <Label Text="Calificación: 9.2" FontSize="14" TextColor="#38BDF8"/>
+
+                                <HorizontalStackLayout Spacing="10" Margin="0,10,0,0">
+                                    <Button Text="Editar"
+                                            BackgroundColor="#EAB308"
+                                            TextColor="Black"
+                                            CornerRadius="6"
+                                            FontSize="12" />
+
+                                    <Button Text="Eliminar"
+                                            BackgroundColor="#EF4444"
+                                            TextColor="White"
+                                            CornerRadius="6"
+                                            FontSize="12" />
+                                </HorizontalStackLayout>
                             </VerticalStackLayout>
-                        </Border>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
+            <!-- 🔙 BOTÓN DE REGRESO -->
             <Button Text="Regresar al Inicio"
                     Clicked="OnRegresarClicked"
                     BackgroundColor="#1D4ED8"

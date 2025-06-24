@@ -3,10 +3,16 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="eduLangApp.Views.CursoView"
+             xmlns:viewmodels="clr-namespace:eduLangApp.ViewModels"
              Title="Cursos"
              BackgroundColor="#0E172A">
     
-    
+        <ContentPage.BindingContext>
+        <viewmodels:CursoViewModel />
+        </ContentPage.BindingContext>
+
+   
+   
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
 
@@ -15,7 +21,41 @@
                    FontAttributes="Bold"
                    TextColor="White" />
 
-            <CollectionView x:Name="CursosList">
+            <!-- 🟩 FORMULARIO NUEVO CURSO -->
+            <Frame BackgroundColor="#1E293B" Padding="15" CornerRadius="10">
+                <VerticalStackLayout Spacing="10">
+                    <Entry Placeholder="Idioma"
+                           PlaceholderColor="#94A3B8"
+                           TextColor="White" />
+
+                    <Entry Placeholder="Nivel"
+                           PlaceholderColor="#94A3B8"
+                           TextColor="White" />
+
+                    <Entry Placeholder="Horario"
+                           PlaceholderColor="#94A3B8"
+                           TextColor="White" />
+
+                    <Entry Placeholder="Cupo"
+                           Keyboard="Numeric"
+                           PlaceholderColor="#94A3B8"
+                           TextColor="White" />
+
+                    <Entry Placeholder="ID del Docente"
+                           Keyboard="Numeric"
+                           PlaceholderColor="#94A3B8"
+                           TextColor="White" />
+
+                    <Button Text="Agregar Curso"
+                            BackgroundColor="#22C55E"
+                            TextColor="White"
+                            CornerRadius="8"
+                            FontAttributes="Bold"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- 🟦 LISTA DE CURSOS -->
+            <CollectionView>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame BorderColor="#334155"
@@ -24,21 +64,36 @@
                                Padding="15"
                                Margin="5">
                             <VerticalStackLayout Spacing="5">
-                                <Label Text="{Binding Idioma}" FontSize="18" FontAttributes="Bold" TextColor="White"/>
-                                <Label Text="{Binding Nivel, StringFormat='Nivel: {0}'}" TextColor="#CBD5E1"/>
-                                <Label Text="{Binding Horario, StringFormat='Horario: {0}'}" TextColor="#CBD5E1"/>
-                                <Label Text="{Binding Cupo, StringFormat='Cupo: {0}'}" TextColor="#CBD5E1"/>
-                                <Label Text="{Binding DocenteId, StringFormat='Docente ID: {0}'}" TextColor="#CBD5E1"/>
+                                <Label Text="Idioma: Inglés" FontSize="18" FontAttributes="Bold" TextColor="White"/>
+                                <Label Text="Nivel: A1" TextColor="#CBD5E1"/>
+                                <Label Text="Horario: Lunes y Miércoles 10:00-12:00" TextColor="#CBD5E1"/>
+                                <Label Text="Cupo: 15" TextColor="#CBD5E1"/>
+                                <Label Text="Docente ID: 101" TextColor="#CBD5E1"/>
+
+                                <HorizontalStackLayout Spacing="10" Margin="0,10,0,0">
+                                    <Button Text="Editar"
+                                            BackgroundColor="#EAB308"
+                                            TextColor="Black"
+                                            CornerRadius="6"
+                                            FontSize="12" />
+
+                                    <Button Text="Eliminar"
+                                            BackgroundColor="#EF4444"
+                                            TextColor="White"
+                                            CornerRadius="6"
+                                            FontSize="12" />
+                                </HorizontalStackLayout>
                             </VerticalStackLayout>
                         </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
 
+            <!-- 🔙 BOTÓN DE REGRESO -->
             <Button Text="Regresar"
+                    Clicked="OnBackClicked"
                     BackgroundColor="#1E40AF"
                     TextColor="White"
-                    Clicked="OnBackClicked"
                     CornerRadius="8"
                     FontAttributes="Bold"/>
         </VerticalStackLayout>

@@ -3,24 +3,160 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="eduLangApp.Views.DocenteView"
+             xmlns:viewmodel="clr-namespace:eduLangApp.ViewModels"
+             xmlns:model="clr-namespace:eduLangApp.Models"
              Title="Docentes">
     
-    <VerticalStackLayout Padding="20" BackgroundColor="#009999">
-        <Button Text="Cargar docentes" Clicked="OnLoadClicked" />
+    <ContentPage.BindingContext>
+        <viewmodel:DocenteViewModel />
+    </ContentPage.BindingContext>
+    
+    <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                 Command="{Binding RefreshCommand}"
+                 BackgroundColor="#009999">
+        
+        <Grid RowDefinitions="Auto, *, Auto" Padding="10">
+            <!-- Header con botones -->
+            <HorizontalStackLayout Grid.Row="0" HorizontalOptions="End" Spacing="10">
+                <Button Text="Agregar" 
+                        Command="{Binding MostrarFormularioCommand}"
+                        BackgroundColor="#0077B6"
+                        TextColor="White"
+                        CornerRadius="20"
+                        WidthRequest="100"/>
+                
+                <Button Text="Refrescar" 
+                        Command="{Binding RefreshCommand}"
+                        BackgroundColor="#0096C7"
+                        TextColor="White"
+                        CornerRadius="20"
+                        WidthRequest="100"/>
+            </HorizontalStackLayout>
 
-        <CollectionView ItemsSource="{Binding ListaDocentes}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame Padding="10" Margin="5" BorderColor="#334155" BackgroundColor="CornflowerBlue">
-                        <VerticalStackLayout>
-                            <Label Text="{Binding UsuarioNombre}" FontAttributes="Bold" FontSize="16"/>
-                            <Label Text="{Binding Correo}" />
-                            <Label Text="{Binding Especialidad}" />
-                            <Label Text="{Binding Disponibilidad}" />
-                        </VerticalStackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </VerticalStackLayout>
+            <!-- Lista de docentes -->
+            <CollectionView Grid.Row="1"
+                           ItemsSource="{Binding ListaDocentes}"
+                           SelectionMode="None">
+                
+                <CollectionView.EmptyView>
+                    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                        <Label Text="No hay docentes registrados" 
+                               FontSize="16"
+                               TextColor="White"/>
+                        <Button Text="Cargar docentes"
+                                Command="{Binding LoadDocentesCommand}"
+                                Margin="0,10,0,0"/>
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:Docente">
+                        <Frame Padding="15" 
+                               Margin="5" 
+                               BorderColor="#334155" 
+                               BackgroundColor="#48CAE4"
+                               CornerRadius="10">
+                            
+                            <Grid ColumnDefinitions="*, Auto" RowDefinitions="Auto, Auto, Auto, Auto">
+                                <!-- Nombre -->
+                                <Label Grid.Column="0" Grid.Row="0"
+                                       Text="{Binding UsuarioNombre}" 
+                                       FontAttributes="Bold" 
+                                       FontSize="16"
+                                       TextColor="#03045E"/>
+                                
+                                <!-- Correo -->
+                                <Label Grid.Column="0" Grid.Row="1"
+                                       Text="{Binding Correo}" 
+                                       FontSize="14"
+                                       TextColor="#023E8A"/>
+                                
+                                <!-- Especialidad -->
+                                <Label Grid.Column="0" Grid.Row="2"
+                                       Text="{Binding Especialidad}" 
+                                       FontSize="14"
+                                       TextColor="#0077B6"/>
+                                
+                                <!-- Disponibilidad -->
+                                <Label Grid.Column="0" Grid.Row="3"
+                                       Text="{Binding Disponibilidad}" 
+                                       FontSize="14"
+                                       TextColor="#0096C7"/>
+                                
+                                <!-- Botones de acciones -->
+                                <HorizontalStackLayout Grid.Column="1" Grid.RowSpan="4"
+                                                     VerticalOptions="Center"
+                                                     Spacing="5">
+                                    
+                                    <Button Text="Editar"
+                                            BackgroundColor="#FFD166"
+                                            TextColor="Black"
+                                            CornerRadius="10"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DocenteViewModel}}, Path=EditarCommand}"
+                                            CommandParameter="{Binding .}"
+                                            WidthRequest="70"/>
+                                    
+                                    <Button Text="Eliminar"
+                                            BackgroundColor="#EF476F"
+                                            TextColor="White"
+                                            CornerRadius="10"
+                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:DocenteViewModel}}, Path=EliminarCommand}"
+                                            CommandParameter="{Binding .}"
+                                            WidthRequest="70"/>
+                                </HorizontalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Formulario Modal (inicialmente oculto) -->
+            <Frame Grid.Row="2"
+                   IsVisible="{Binding MostrarFormulario}"
+                   Padding="20"
+                   BackgroundColor="White"
+                   CornerRadius="20"
+                   Margin="0,10,0,0">
+                
+                <VerticalStackLayout Spacing="15">
+                    <Label Text="{Binding TituloFormulario}"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"/>
+                    
+                    <!-- Campos del formulario -->
+                    <Entry Placeholder="Nombre" 
+                           Text="{Binding DocenteActual.Nombre}"/>
+                    
+                    <Entry Placeholder="Apellido" 
+                           Text="{Binding DocenteActual.Apellido}"/>
+                    
+                    <Entry Placeholder="Correo" 
+                           Text="{Binding DocenteActual.Correo}"
+                           Keyboard="Email"/>
+                    
+                    <Entry Placeholder="Especialidad" 
+                           Text="{Binding DocenteActual.Especialidad}"/>
+                    
+                    <Entry Placeholder="Disponibilidad" 
+                           Text="{Binding DocenteActual.Disponibilidad}"/>
+                    
+                    <!-- Botones del formulario -->
+                    <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+                        <Button Text="Guardar"
+                                Command="{Binding GuardarCommand}"
+                                BackgroundColor="#0077B6"
+                                TextColor="White"
+                                WidthRequest="100"/>
+                        
+                        <Button Text="Cancelar"
+                                Command="{Binding CancelarCommand}"
+                                BackgroundColor="#EF476F"
+                                TextColor="White"
+                                WidthRequest="100"/>
+                    </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </Frame>
+        </Grid>
+    </RefreshView>
 </ContentPage>
